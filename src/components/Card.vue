@@ -8,7 +8,6 @@
 
 <script setup>
 import { defineProps, reactive } from 'vue'
-
 const props = defineProps({
   words: Array
 })

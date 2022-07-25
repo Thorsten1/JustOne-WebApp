@@ -1,21 +1,37 @@
 <template>
-  <img src="https://cdn.svc.asmodee.net/production-rprod/storage/games/justone/justone-logo-1604323546mSp1o-large.png" id="logo">
-  <Card :words=words id="card"/>
+    <Game id="game" v-if="!startScreen"/>
+    <template v-if="startScreen">  
+      <button id="start" @click="startGame"> 
+        <span style='color: #ff8d01'>S</span>
+        <span style='color: #df0004'>T</span>
+        <span style='color: #ff018a'>A</span>
+        <span style='color: #842892'>R</span>
+        <span style='color: #0091d6'>T</span>
+        <span style='color: #04aa38'>E</span>
+        <span style='color: #fec300'>N</span>
+      </button>
+      <img src="https://cdn.svc.asmodee.net/production-rprod/storage/games/justone/justone-logo-1604323546mSp1o-large.png" id="startLogo">
+      <p>Voll die krasse digitale Erweiterung für JustOne mit eigenen Begriffen</p>
+    </template>
 </template>
 
 <script setup>
-import Card from './components/Card.vue'
-const words = ["Das","ist","ein","krasser","Test"]
+import Game from './components/Game.vue'
+import {useStore} from './stores/store.js'
+import { storeToRefs } from 'pinia'
+const store = useStore()
+const { reset, start } = store
+const { correctlyIdentified, currentCard, startScreen } = storeToRefs(store)
+function startGame(){
+  start()
+  
+}
 </script>
 
 <style>
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
   body{
     background: rgba(59,215,246,.5);
@@ -23,21 +39,18 @@ const words = ["Das","ist","ein","krasser","Test"]
     width: 100vw;
     margin: 0;
   }
-  #logo{
-    width:10vh;
+  #start{
+    font-size: 20vw;
+    margin: 0;
     position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-  #card{
-    margin-top: 10vh;
-    margin-left:auto;
-    margin-right:auto;
-    border: 5px solid #dcc08d;
-    padding: 10px;
-    border-radius: 5%;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%);
+    border-radius: 5vw;
+    border-color:#dcc08d;
     background: #fff6e6;
-    width: 85vw;
-    
+  }
+  #startLogo{
+    width:80vw;
   }
 </style>
