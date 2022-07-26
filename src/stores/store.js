@@ -7,7 +7,7 @@ export const useStore = defineStore('store', {
     return { 
             correctlyIdentified: localStorage.getItem('correctlyIdentified') || 0,
             currentCard: localStorage.getItem('currentCard') || 0,
-            startScreen: localStorage.getItem('startScreen')==="true" || true,
+            startScreen: localStorage.getItem('startScreen')?localStorage.getItem('startScreen')==="true":true,
             cards: JSON.parse(localStorage.getItem('cards')) || [],
             wordList: words
            }
@@ -31,10 +31,28 @@ export const useStore = defineStore('store', {
     },
     start(){
       this.reset()
-      localStorage.setItem('start', false)
+      localStorage.setItem('startScreen', false)
+      this.startScreen = false
+      this.generateCards()
     },
     generateCards(){
-      
+      let tempWords =this.wordList
+      let tempCards = []
+      let tempCard = []
+      let index = 0;
+      // for each card
+      for(let i =0; i<13;i++){
+        // choose 5 words
+        for(let j =0;j<5;j++){
+          index = Math.floor(Math.random()*tempWords.length)
+          tempCard.push(tempWords[index])
+          tempWords.splice(index,1)
+        }
+        tempCards.push(tempCard)
+        tempCard = []
+      }
+      this.cards=tempCards
+      localStorage.setItem('cards',JSON.stringify(this.cards))
     }
   },
 })

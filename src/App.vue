@@ -1,4 +1,5 @@
 <template>
+  <template v-if="currentCard<13">
     <Game id="game" v-if="!startScreen"/>
     <template v-if="startScreen">  
       <button id="start" @click="startGame"> 
@@ -13,14 +14,17 @@
       <img src="https://cdn.svc.asmodee.net/production-rprod/storage/games/justone/justone-logo-1604323546mSp1o-large.png" id="startLogo">
       <p>Voll die krasse digitale Erweiterung für JustOne mit eigenen Begriffen</p>
     </template>
+  </template>
+  <EndScreen v-else/>
 </template>
 
 <script setup>
 import Game from './components/Game.vue'
+import EndScreen from './components/EndScreen.vue'
 import {useStore} from './stores/store.js'
 import { storeToRefs } from 'pinia'
 const store = useStore()
-const { reset, start } = store
+const { start } = store
 const { correctlyIdentified, currentCard, startScreen } = storeToRefs(store)
 function startGame(){
   start()

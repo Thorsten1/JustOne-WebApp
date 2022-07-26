@@ -1,7 +1,7 @@
 <template>
   <div id="game">
     <img src="https://cdn.svc.asmodee.net/production-rprod/storage/games/justone/justone-logo-1604323546mSp1o-large.png" id="logo">
-    <Card :words=words id="card"/>
+    <Card :words=cards[currentCard] id="card"/>
       <close-circle-outline id="fail" @click="submit(false)"/>
       <check-circle-outline id="success" @click="submit(true)"/>
   </div>
@@ -12,10 +12,9 @@ import { CheckCircleOutline, CloseCircleOutline } from "mdue"
 import Card from './Card.vue'
 import {useStore} from '../stores/store.js'
 import { storeToRefs } from 'pinia'
-const words = ["Das","ist","ein","krasser","Test"]
 const store = useStore()
 const { identified, notIdentified } = store
-const { correctlyIdentified, currentCard } = storeToRefs(store)
+const { currentCard, cards } = storeToRefs(store)
 function submit(guessed){
   if(guessed){
     identified()
