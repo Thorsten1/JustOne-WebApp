@@ -24,6 +24,7 @@ li {
   font-size: 5vh;
   border: 3pt solid black; 
   margin-bottom: 2vh;
+  word-break: break-word;
 }
 li:nth-child(1) {
   color: #2190bc;

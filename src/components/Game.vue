@@ -29,6 +29,7 @@ function submit(guessed){
   #game {
   display: grid;
   gap: 10px;
+  justify-items: center;
 }
   #logo{
     width:10vh;
@@ -44,6 +45,7 @@ function submit(guessed){
     background: #fff6e6;   
     grid-column: 1/4;
     margin: 10px;
+    width: 85vw;
   }
   #fail{
     grid-row:3;
@@ -53,6 +55,7 @@ function submit(guessed){
     background:white;
     border-radius: 5.25vh;
     justify-self: end;
+    margin-left: 15px;
   }
   #success{
     grid-row:3;
@@ -61,5 +64,6 @@ function submit(guessed){
     color:lightgreen;
     background:white;
     border-radius: 5vh;
+    margin-right: 15px;
   }
 </style>

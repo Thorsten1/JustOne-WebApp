@@ -28,6 +28,9 @@ export const useStore = defineStore('store', {
       localStorage.removeItem('currentCard')
       localStorage.removeItem('startScreen')
       localStorage.removeItem('cards')
+      this.correctlyIdentified = 0
+      this.currentCard = 0
+      this.startScreen = true
     },
     start(){
       this.reset()

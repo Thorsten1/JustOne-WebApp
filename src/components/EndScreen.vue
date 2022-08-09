@@ -10,7 +10,7 @@
     Ihr habt {{correctlyIdentified}} Karten richtig erkannt. <br>
     {{quotes[correctlyIdentified]}}
   </p>
-  <button id="reset" @onClick="reset">
+  <button id="reset" @click="reset">
     <span style='color: #ff018a'>R</span>
     <span style='color: #842892'>E</span>
     <span style='color: #0091d6'>S</span>
@@ -21,10 +21,10 @@
 </template>
 
 <script setup>
-import {useStore} from './stores/store.js'
+import {useStore} from '../stores/store.js'
 import { storeToRefs } from 'pinia'
 const store = useStore()
-const { start } = store
+const { reset } = store
 const { correctlyIdentified } = storeToRefs(store)
 const quotes=[
   "Übung macht den Meister.",
@@ -47,14 +47,19 @@ const quotes=[
 <style>
 
   #end{
-    font-size: 20vw;
+    font-size: 10vw;
     margin: 0;
     position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%);
+    top: 10%;
+    left:10%;
+    width:80vw;
     border-radius: 5vw;
     border-color:#dcc08d;
     background: #fff6e6;
+  }
+
+  #reset{
+    font-size:8vw;
+    margin-bottom: 20px;
   }
 </style>

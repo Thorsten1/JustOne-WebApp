@@ -2,7 +2,7 @@
   <template v-if="currentCard<13">
     <Game id="game" v-if="!startScreen"/>
     <template v-if="startScreen">  
-      <button id="start" @click="startGame"> 
+      <button id="start" @click="start"> 
         <span style='color: #ff8d01'>S</span>
         <span style='color: #df0004'>T</span>
         <span style='color: #ff018a'>A</span>
@@ -26,10 +26,6 @@ import { storeToRefs } from 'pinia'
 const store = useStore()
 const { start } = store
 const { correctlyIdentified, currentCard, startScreen } = storeToRefs(store)
-function startGame(){
-  start()
-  
-}
 </script>
 
 <style>
